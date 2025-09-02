@@ -2,7 +2,7 @@ name: Update Calendar
 
 on:
   schedule:
-    - cron: "0 6 * * *"   # ירוץ כל יום ב-06:00 UTC
+    - cron: "0 6 * * *"   # ירוץ כל יום ב-06:00 בבוקר UTC
   workflow_dispatch:
 
 jobs:
