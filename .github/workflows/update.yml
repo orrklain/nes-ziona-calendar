@@ -1,0 +1,27 @@
+name: Update Calendar
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # ירוץ כל יום ב-06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+      - name: Install deps
+        run: pip install requests beautifulsoup4
+      - name: Run script
+        run: python update_calendar.py
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs/nes_ziona.ics
+          git commit -m "Update calendar" || echo "No changes"
+          git push
