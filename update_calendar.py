@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import os
 
 URL = "https://www.football.org.il/team-details/team-games/?team_id=8203&season_id=27"
 
@@ -29,8 +30,7 @@ for date, match in games:
     ics += "END:VEVENT\n"
 ics += "END:VCALENDAR"
 
-# שמירה ל-docs/
-import os
+# לשמור את הקובץ לתיקיית docs
 os.makedirs("docs", exist_ok=True)
 with open("docs/nes_ziona.ics", "w", encoding="utf-8") as f:
     f.write(ics)
